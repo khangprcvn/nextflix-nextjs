@@ -14,7 +14,12 @@ export default function Home() {
       </Head>
 
       <h1>Netflix</h1>
-      <Banner />
+
+      <Banner
+        title="Clifford the red dog"
+        subtitle="A very cute dog"
+        imgUrl="/static/clifford.webp"
+      />
     </div>
   )
 }
