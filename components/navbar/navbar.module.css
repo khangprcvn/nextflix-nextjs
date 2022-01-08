@@ -1,0 +1,73 @@
+.navbarContainer {
+  color: var(--white10);
+  position: fixed;
+  top: 0px;
+  background-image: linear-gradient(to bottom, var(--gradient-stops));
+
+  --gradient-from: var(--black);
+  --gradient-stops: var(--gradient-from), var(--gradient-to, rgba(0, 0, 0, 0));
+  width: 100%;
+  z-index: 50;
+}
+
+.navbarWrapper {
+  display: flex;
+  padding: 1.2rem 3rem;
+
+  align-items: center;
+}
+
+.logoWrapper {
+  width: 8rem;
+  color: var(--red10);
+}
+
+.listContainer {
+  width: 50%;
+  display: flex;
+  line-height: 1.25;
+  list-style: none;
+  font-size: 1.25rem;
+
+  margin-left: 3rem;
+}
+
+.item {
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-right: 2rem /* 12px */;
+}
+
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.buttonUsername {
+  display: flex;
+  align-items: center;
+}
+
+.username {
+  color: var(--white10);
+  font-size: 1rem;
+}
+
+.logoutContainer {
+  background-color: var(--black10);
+  color: var(--white10);
+
+  padding: 5px 10px;
+
+  position: absolute;
+  top: 54px;
+  right: 120px;
+
+  cursor: pointer;
+}
+
+.logout:hover {
+  text-decoration: underline;
+}
