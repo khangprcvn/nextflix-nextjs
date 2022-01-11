@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import Image from 'next/image'
+import Link from 'next/link'
 
 import styles from './navbar.module.css'
 
@@ -45,7 +46,9 @@ const Navbar = props => {
 
           {showMore && (
             <div className={styles.logoutContainer}>
-              <a className={styles.logout}>Sign out of Netflix</a>
+              <Link href="/login">
+                <a className={styles.logout}>Sign out of Netflix</a>
+              </Link>
             </div>
           )}
         </nav>
