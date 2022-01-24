@@ -1,5 +1,5 @@
 .imgContainer {
-  padding: 2rem;
+  padding: 1rem 2rem;
 }
 
 .motionWrapper {
@@ -35,11 +35,32 @@
 }
 
 .cardImg {
+  /* object-fit: cover;
+  border-radius: 8px; */
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+
+  border-radius: 0.375rem /* 6px */;
   object-fit: cover;
-  border-radius: 8px;
+
+  object-position: center;
+  display: block;
+
+  max-width: 100%;
 }
 
 .header {
   margin-bottom: 1rem;
   font-size: 2rem;
+}
+
+.cardWrapper {
+  display: flex;
+}
+
+.container {
+  margin-top: 1rem;
+  margin-right: 0.25rem;
 }

@@ -7,7 +7,7 @@ import cls from 'classnames'
 import styles from './card.module.css'
 
 const Card = props => {
-  const { imgUrl, size = 'medium', header } = props
+  const { imgUrl, size = 'medium', onClick } = props
 
   const [imgSrc, setImgSrc] = useState(imgUrl)
 
@@ -22,14 +22,11 @@ const Card = props => {
   }
 
   return (
-    <section className={styles.imgContainer}>
-      <h2 className={styles.header}>{header}</h2>
-
+    <div className={styles.container}>
       <motion.div
         className={cls(styles.motionWrapper, classMap[size])}
         whileHover={{
           scale: 1.1,
-          transition: { duration: 0.5 },
         }}
       >
         <Image
@@ -38,9 +35,10 @@ const Card = props => {
           layout="fill"
           className={styles.cardImg}
           onError={handleErrorImg}
+          onClick={onClick}
         />
       </motion.div>
-    </section>
+    </div>
   )
 }
 

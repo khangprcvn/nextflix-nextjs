@@ -2,11 +2,29 @@ import Head from 'next/head'
 
 import Banner from 'components/banner'
 import Navbar from 'components/navbar'
-import Card from 'components/card'
+
+import SectionCards from 'components/card/section-cards'
+
+import { getVideos, getPopularVideos } from 'lib/videos'
+import { magic } from 'lib/magic-client'
 
 import styles from 'styles/Home.module.css'
 
-export default function Home() {
+export async function getServerSideProps() {
+  const disneyVideos = await getVideos('disney')
+  const travelVideos = await getVideos('travel')
+  const productivityVideos = await getVideos('productivity')
+  const popularVideos = await getPopularVideos()
+
+  return {
+    props: { disneyVideos, travelVideos, productivityVideos, popularVideos },
+  }
+}
+
+export default function Home(props) {
+  const { disneyVideos, travelVideos, productivityVideos, popularVideos } =
+    props
+
   return (
     <div className={styles.container}>
       <Head>
@@ -15,7 +33,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Navbar username="khangviet1996@gmail.com" />
+      <Navbar />
 
       <Banner
         title="Clifford the red dog"
@@ -23,13 +41,17 @@ export default function Home() {
         imgUrl="/static/clifford.webp"
       />
 
-      <Card imgUrl="/static/clifford.webp" size="large" header="Disney" />
-      <Card
-        imgUrl="/static/clifford.webp"
-        size="medium"
-        header="Watch it again"
+      <SectionCards header="Disney" size="large" videos={disneyVideos} />
+
+      <SectionCards header="Travel" size="medium" videos={travelVideos} />
+
+      <SectionCards
+        header="Productivity"
+        size="small"
+        videos={productivityVideos}
       />
-      <Card imgUrl="/static/clifford.webp" size="small" header="Travel" />
+
+      <SectionCards header="Popular" size="medium" videos={popularVideos} />
     </div>
   )
 }

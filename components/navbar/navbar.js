@@ -1,14 +1,45 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
+import { useRouter } from 'next/router'
 
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { magic } from 'lib/magic-client'
+
 import styles from './navbar.module.css'
 
-const Navbar = props => {
-  const { username } = props
-
+const Navbar = () => {
+  const [username, setUsername] = useState('')
   const [showMore, setShowMore] = useState(false)
+
+  const router = useRouter()
+
+  useEffect(() => {
+    const getEmail = async () => {
+      try {
+        const { email } = await magic.user.getMetadata()
+        if (email) {
+          setUsername(email)
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    getEmail()
+  }, [])
+
+  const handleSignout = async e => {
+    e.preventDefault()
+    try {
+      await magic.user.logout()
+      router.push('/login')
+    } catch (error) {
+      router.push('/login')
+      console.error(error)
+    }
+  }
 
   return (
     <div className={styles.navbarContainer}>
@@ -46,9 +77,9 @@ const Navbar = props => {
 
           {showMore && (
             <div className={styles.logoutContainer}>
-              <Link href="/login">
-                <a className={styles.logout}>Sign out of Netflix</a>
-              </Link>
+              <a className={styles.logout} onClick={handleSignout}>
+                Sign out of Netflix
+              </a>
             </div>
           )}
         </nav>
