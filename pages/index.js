@@ -6,7 +6,6 @@ import Navbar from 'components/navbar'
 import SectionCards from 'components/card/section-cards'
 
 import { getVideos, getPopularVideos } from 'lib/videos'
-import { magic } from 'lib/magic-client'
 
 import styles from 'styles/Home.module.css'
 
