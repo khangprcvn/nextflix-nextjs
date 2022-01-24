@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
 
 import { useRouter } from 'next/router'
-
 import Image from 'next/image'
-import Link from 'next/link'
 
 import { magic } from 'lib/magic-client'
 
