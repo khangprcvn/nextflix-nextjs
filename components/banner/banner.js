@@ -1,9 +1,13 @@
 import Image from 'next/image'
 
+import { useRouter } from 'next/router'
+
 import styles from './banner.module.css'
 
 const Banner = props => {
-  const {title, subtitle, imgUrl} = props
+  const { title, subtitle, imgUrl, videoId } = props
+
+  const router = useRouter()
 
   return (
     <div className={styles.container}>
@@ -25,7 +29,12 @@ const Banner = props => {
                 width={32}
               />
             </div>
-            <span className={styles.playText}>Play</span>
+            <span
+              className={styles.playText}
+              onClick={() => router.push(`/video/${videoId}`)}
+            >
+              Play
+            </span>
           </button>
         </div>
       </div>
